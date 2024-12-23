@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -29,6 +30,7 @@ namespace Movie_Project.Controllers
 			return RedirectToAction("MovieList","Movie");
 		}
 [HttpGet]
+[Authorize(Roles = "Admin")]
 public async Task<IActionResult> UpdateMovie(int movieId)
 {
 	// Kategorileri ViewBag'e yükle
@@ -66,21 +68,22 @@ public async Task<IActionResult> UpdateMovie(int movieId)
 }
 
 
-		[HttpPost]
+[HttpPost]
+[Authorize(Roles = "Admin")]
 public async Task<IActionResult> UpdateMovie(MovieInfo updatedMovie)
 {
 	
 	 ViewBag.Categories = _context.Categories
-        .Select(c => new SelectListItem
-        {
-            Value = c.CategoryId.ToString(),
-            Text = c.Name
-        })
-        .ToList();
+		.Select(c => new SelectListItem
+		{
+			Value = c.CategoryId.ToString(),
+			Text = c.Name
+		})
+		.ToList();
 	
 	if (ModelState.IsValid) // Form verilerinin doğruluğunu kontrol eder
 	{
-		var fileName = Path.GetFileName(updatedMovie.PosterUrl.FileName); // Örn: "image.jpg"
+		var fileName = Path.GetFileName(updatedMovie.PosterUrl!.FileName); // Örn: "image.jpg"
 				var fileExtension = Path.GetExtension(updatedMovie.PosterUrl.FileName); // Örn: ".jpg"
 				
 				// Dosyayı belirli bir dizine kaydet
@@ -124,7 +127,7 @@ public async Task<IActionResult> UpdateMovie(MovieInfo updatedMovie)
 
 }
 
-
+	[Authorize(Roles = "Admin")]
 	public IActionResult AllUsers(){
 		var userList = _context.Users;
 

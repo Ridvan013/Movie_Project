@@ -70,8 +70,8 @@ public async Task<IActionResult> Register(RegisterUserView userToRegister)
     }
 
     // Kullanıcı adı veya e-posta var mı kontrol et
-    var existingUser = await _userManager.FindByNameAsync(userToRegister.Username);
-    var existingEmail = await _userManager.FindByEmailAsync(userToRegister.Email);
+    var existingUser = await _userManager.FindByNameAsync(userToRegister.Username!);
+    var existingEmail = await _userManager.FindByEmailAsync(userToRegister.Email!);
 
     if (existingUser != null)
     {
@@ -92,7 +92,7 @@ public async Task<IActionResult> Register(RegisterUserView userToRegister)
         Email = userToRegister.Email
     };
 
-    var result = await _userManager.CreateAsync(user, userToRegister.Password);
+    var result = await _userManager.CreateAsync(user, userToRegister.Password!);
 
     if (result.Succeeded)
     {
@@ -133,10 +133,10 @@ public async Task<IActionResult> Register(RegisterUserView userToRegister)
 	}
 	[HttpGet]
 	public IActionResult UserDetail(){
-		var loginUser = _context.Users.FirstOrDefault(u=>u.Username == User.Identity.Name);
+		var loginUser = _context.Users.FirstOrDefault(u=>u.Username == User.Identity!.Name);
 
 		var viewLoginUser = new UserView{
-			UserId = loginUser.UserId,
+			UserId = loginUser!.UserId,
 			Name = loginUser.Name,
 			Surname = loginUser.Surname,
 			UserName = loginUser.Username,
