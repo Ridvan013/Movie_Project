@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="home-container">
+    <h1>Welcome to World of Movies</h1>
+   
+    <a asp-controller="Movie" asp-action="MovieList" class="action-button">Movies</a>
+</div>
+
+<style>
+    /* Body Arkaplan Resmi */
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background: url('/img/1.jpg') no-repeat center center fixed; /* Resmi ortala */
+        background-size: cover; /* Resmi tam boyuta sığdır */
+        color: #FFD700; /* Yazı rengi */
+    }
+
+    /* Home Container */
+    .home-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: 90%; /* Div genişliği */
+        height: 600px; /* Div yüksekliği */
+        margin: 50px auto; /* Sayfa ortasında */
+        background-color: rgba(26, 26, 26); /* Siyahımsı gri arkaplan (şeffaf) */
+        color: #FFD700; /* Koyu sarı yazı */
+        border-radius: 15px; /* Köşeleri yuvarlak */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Hafif gölge */
+        padding: 30px; /* İç boşluk */
+    }
+
+    /* Başlık Stili */
+    .home-container h1 {
+        margin-bottom: 20px;
+        font-size: 3rem; /* Daha büyük başlık */
+        font-weight: bold;
+    }
+
+    /* Paragraf Stili */
+    .home-container p {
+        font-size: 1.4rem;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    /* Action Button */
+    .action-button {
+        margin-top: 30px;
+        padding: 10px 20px;
+        font-size: 1.2rem;
+        color: #1a1a1a; /* Siyah yazı */
+        background-color: #FFD700; /* Koyu sarı arkaplan */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .action-button:hover {
+        background-color: #e6c200; /* Biraz daha koyu sarı */
+        transform: scale(1.05); /* Hafif büyüme efekti */
+    }
+</style>

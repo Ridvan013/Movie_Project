@@ -1,0 +1,36 @@
+﻿<!-- _Layout.cshtml -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] - MyApp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/css/layout.css" />
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-brand">World Of Movies</div>
+        <ul class="navbar-links">
+            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li><a asp-controller="Movie" asp-action="MovieList">Movies</a></li>
+           
+            @if(User.IsInRole("Admin")){
+                <li><a asp-controller="Movie" asp-action="AddMovie">Add Movie</a></li>
+                <li><a asp-controller="Manage" asp-action="AllUsers">All Users </a></li>
+            }
+            @if(User.Identity.IsAuthenticated){
+                <li><a asp-controller="Account" asp-action="UserDetail">@User!.Identity.Name</a></li>
+                <li><a asp-controller="Account" asp-action="Logout">Logout</a></li>
+            }else{
+                 <li><a asp-controller="Account" asp-action="Login">Login</a></li>
+            }
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        @RenderBody()
+    </div>
+</body>
+</html>

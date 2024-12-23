@@ -1,0 +1,68 @@
+/* Reset Margin ve Padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Navbar Container */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #000; /* Siyah Arkaplan */
+  color: #ffd700; /* Koyu Sarı Yazı */
+  padding: 10px 20px;
+  position: fixed; /* Navbar'ı sayfanın en üstünde sabit tutar */
+  top: 0;
+  left: 0;
+  width: 100%; /* Sayfanın sınırları içinde kalır */
+  border-bottom: 1px solid #444; /* Hafif gri alt çizgi */
+  z-index: 1000;
+}
+
+/* Navbar Brand */
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #ffd700; /* Koyu Sarı Yazı */
+}
+
+/* Navbar Links */
+.navbar-links {
+  display: flex;
+  list-style: none;
+}
+
+.navbar-links li {
+  margin-left: 20px;
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: #ffd700; /* Koyu Sarı Yazı */
+  font-size: 1rem;
+  padding: 5px 10px;
+  transition: color 0.2s ease; /* Daha az dinamik hover efekti */
+}
+
+.navbar-links a:hover {
+  color: #ffcc00; /* Hafif daha açık sarı */
+}
+
+/* Sayfa İçeriği */
+.container {
+  margin-top: 70px; /* Navbar sabit olduğu için içeriği aşağı kaydır */
+  padding: 20px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Genel Görünüm Ayarı */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0; /* Açık Gri Arkaplan */
+  color: #333; /* Genel Yazı Rengi */
+}

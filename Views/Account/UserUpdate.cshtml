@@ -1,0 +1,167 @@
+@model UserUpdateView
+
+@{
+    ViewData["Title"] = "Update User";
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #4e4e4e;
+        color: #333;
+        margin: 0;
+        padding: 0;
+        background-color: #212529;
+    }
+
+    
+
+    .updated-container {
+        max-width: 900px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: row;
+        color: black;
+        background-color: #495057;
+        gap: 20px; /* Fotoğraf ve form arasında boşluk */
+    }
+
+    .profile-picture {
+        flex: 0 0 30%; /* Fotoğraf için %30 genişlik */
+        text-align: center;
+    }
+
+    .profile-picture img {
+        max-width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .form-section {
+        flex: 1; /* Form için kalan alan (%70) */
+    }
+
+    h3 {
+        color: black;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #adb5bd;
+    }
+
+    .form-control:focus {
+        border-color: #007bff;
+        outline: none;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        background-color: #adb5bd;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-left: 10px;
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+    }
+
+    .text-danger {
+        color: #e74c3c;
+        font-size: 0.85rem;
+    }
+
+    
+</style>
+
+
+<div class="updated-container">
+    
+        <!-- Kullanıcı Fotoğrafı Bölümü -->
+        <div class="profile-picture">
+            <img src="@Url.Content("~/img/avatar.jpeg")" alt="User Profile" class="img-thumbnail">
+        </div>
+
+        <!-- Kullanıcı Bilgileri Güncelleme Formu -->
+        <div class="form-section">
+            <h3>Update Your Information</h3>
+            <form asp-action="UserUpdate" method="post">
+                <input type="hidden" asp-for="UserId" />
+
+                <!-- Name -->
+                <div class="form-group">
+                    <label asp-for="Name">First Name</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <!-- Surname -->
+                <div class="form-group">
+                    <label asp-for="Surname">Last Name</label>
+                    <input asp-for="Surname" class="form-control" />
+                    <span asp-validation-for="Surname" class="text-danger"></span>
+                </div>
+
+                <!-- Username (readonly) -->
+                <div class="form-group">
+                    <label asp-for="Username">Username</label>
+                    <input asp-for="Username" class="form-control" readonly />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label asp-for="Email">Email Address</label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label asp-for="Password">New Password</label>
+                    <input asp-for="Password" type="password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <!-- Buttons -->
+                <button type="submit" class="btn-primary">Save Changes</button>
+                <a asp-action="UserDetail" class="btn-secondary">Cancel</a>
+            </form>
+        </div>
+    
+</div>
+
+
+

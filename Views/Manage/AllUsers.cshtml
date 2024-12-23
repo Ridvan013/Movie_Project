@@ -1,0 +1,119 @@
+@model IEnumerable<UserView>
+
+@{
+    ViewData["Title"] = "All Users";
+    Layout = "~/Views/Shared/_Layout.cshtml"; /* Varsayılan Layout dosyasını tanımlıyoruz */
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4 custom-title">All Users</h2>
+
+    <table class="table table-bordered custom-table">
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.UserId</td>
+                    <td>@user.Name</td>
+                    <td>@user.Surname</td>
+                    <td>@user.UserName</td>
+                    <td>@user.Email</td>
+                    <td>
+                        <a asp-controller="Account" asp-action="Delete" asp-route-userId="@user.UserId" class="btn btn-sm custom-delete-btn">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<style>
+    /* Genel arka plan ve yazı tipleri */
+    body {
+        background-color: #f4f4f9; /* Hafif gri arka plan */
+        color: #333; /* Varsayılan yazı rengi */
+        font-family: 'Arial', sans-serif;
+    }
+
+    /* Başlık stili */
+    .custom-title {
+        color: #ffcc00; /* Sarı renk */
+        font-weight: bold;
+        text-transform: uppercase;
+        border-bottom: 2px solid #ffcc00;
+        display: inline-block;
+        padding-bottom: 5px;
+    }
+
+    /* Tablo stili */
+    .custom-table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+        background-color: #fff; /* Beyaz arka plan */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Gölge efekti */
+    }
+
+    .custom-table th {
+        background-color: #333; /* Koyu başlık */
+        color: #fff; /* Beyaz yazı rengi */
+        text-align: center;
+        text-transform: uppercase;
+        padding: 10px;
+    }
+
+    .custom-table td {
+        padding: 10px;
+        text-align: center;
+    }
+
+    .custom-table tr:nth-child(even) {
+        background-color: #f9f9f9; /* Çizgili satırlar için açık gri */
+    }
+
+    .custom-table tr:hover {
+        background-color: #ffcc00; /* Hover rengi */
+        color: #fff; /* Yazı rengini beyaza çevir */
+    }
+
+    /* Delete butonu */
+    .custom-delete-btn {
+        background-color: #ff3333; /* Kırmızı arka plan */
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        padding: 5px 10px;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+        cursor: pointer;
+    }
+
+    .custom-delete-btn:hover {
+        background-color: #cc0000; /* Daha koyu kırmızı */
+        color: #fff;
+    }
+
+    /* Genel container */
+    .container {
+        max-width: 1200px;
+        margin: 1 auto;
+        padding: 20px;
+    }
+
+    h2 {
+        text-align: center;
+    }
+</style>

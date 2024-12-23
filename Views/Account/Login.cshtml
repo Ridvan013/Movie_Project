@@ -1,0 +1,121 @@
+@{
+    ViewData["Title"] = "Login";
+    Layout = null; <!-- Layout olmadan tam sayfa görünüm için -->
+}
+@model LoginUserView
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        /* Genel Sayfa Arkaplan */
+    body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: url('/img/2.jpg') no-repeat center center;
+    background-size: contain; /* Resmi oranını koruyarak boyutlandırır */
+    background-attachment: fixed; /* Kaydırma sırasında arka plan sabit kalır */
+    background-position: center; /* Resmi tam ortalar */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Sayfanın tamamını kaplar */
+    background-color: black;
+}
+
+        /* Login Container */
+        .login-container {
+            width: 500px; /* Konteyner genişliği */
+            padding: 40px;
+            background-color: rgba(26, 26, 26); /* Şeffaf siyah arkaplan */
+            color: #FFD700; /* Koyu sarı yazı */
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Gölge efekti */
+            text-align: center;
+        }
+
+        /* Başlık */
+        .login-container h2 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+        }
+
+        /* Form Grupları */
+        .form-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .form-group label {
+            font-size: 1.2rem;
+            color: #FFD700;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Input Alanları ve Buton */
+        .form-group input,
+        .login-button,
+        .register-button {
+            width: 100%;
+            height: 50px;
+            padding: 10px;
+            font-size: 1.2rem;
+            border: 1px solid #444;
+            border-radius: 8px;
+            box-sizing: border-box;
+            background-color: #333; /* Input arkaplan rengi */
+            color: #FFD700;
+        }
+
+        .login-button, .register-button {
+            background-color: #FFD700;
+            color: #1a1a1a; /* Siyah yazı */
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .login-button:hover, .register-button:hover {
+            background-color: #e6c200; /* Daha koyu sarı hover */
+            transform: scale(1.02);
+        }
+
+        /* Register Butonu */
+        .register-button {
+            margin-top: 15px;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form method="post" asp-controller="Account" asp-action="Login">
+            <div asp-validation-summary="ModelOnly"></div>
+            <div class="form-group">
+                <label asp-for="Username">Username</label>
+                <input asp-for="Username" placeholder="Enter your username" >
+                <span asp-validation-for="Username"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password">Password</label>
+                <input asp-for="Password" placeholder="Enter your password" >
+                <span asp-validation-for="Password"></span>
+            </div>
+            <button type="submit" class="login-button">Login</button>
+            <!-- Register Butonu -->
+            <a href="/Account/Register">
+                <button type="button" class="register-button">Register</button>
+            </a>
+        </form>
+    </div>
+</body>
+
+</html>
+
